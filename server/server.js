@@ -17,6 +17,8 @@ app.get('/', function (req, res) {
 app.use(require('./routes/usuario'));
 app.use(require('./routes/categoria'));
 app.use(require('./routes/login'));
+app.use(require('./routes/producto'));
+
 
 mongoose.connect('mongodb+srv://admon:1q2w3e4r@cluster0.nbjt9.mongodb.net/starbucks', {
   useNewUrlParser: true,
