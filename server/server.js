@@ -14,6 +14,8 @@ app.get('/', function (req, res) {
   res.send('<h1> Bienvenido a mi servidor REST<h1>');
 }); 
 
+app.use(require('./routes/usuario'));
+
 mongoose.connect('mongodb://localhost:27017/cafeteria', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
