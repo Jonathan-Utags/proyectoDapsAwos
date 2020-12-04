@@ -16,15 +16,15 @@ app.get('/', function (req, res) {
 
 app.use(require('./routes/usuario'));
 app.use(require('./routes/categoria'));
+app.use(require('./routes/login'));
 
-
-mongoose.connect('mongodb://localhost:27017/cafeteria', {
+mongoose.connect('mongodb+srv://admon:1q2w3e4r@cluster0.nbjt9.mongodb.net/starbucks', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
   useCreateIndex: true
 }, (err,res ) => {
-if (err) throw new err;
+if (err) throw  err;
 console.log('Base de datos ONLINE');
 });
 
