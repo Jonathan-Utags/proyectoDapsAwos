@@ -5,12 +5,12 @@ let Schema = mongoose.Schema;
 let productoSchema = new Schema({
 nombre:{
     type: String,
-    require: [true,'El nombre del producto es necesario']
+    require: [true,'El nombre del producto es necesario'],
+    unique: true
 },
 precioUni:{
     type: Number,
     require: [true,'El precio es necesario'],
-    unique: true
 },
 categoria: {
     type: Schema.Types.ObjectId,

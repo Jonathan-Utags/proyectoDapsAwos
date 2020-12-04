@@ -3,7 +3,7 @@ const _ = require ('underscore');
 const app = express();
 const Categoria = require ('../models/categoria');
 
-app.get('/categoria', (req, res ) =>{
+app.get('/categoria', function (req, res ) {
     let desde = req.query.desde || 0;
     let hasta = req.query.hasta || 5;
     Categoria.find({ estado: true })

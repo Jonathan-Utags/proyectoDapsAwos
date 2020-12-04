@@ -3,7 +3,7 @@ const _ = require ('underscore');
 const app = express();
 const Producto = require ('../models/producto');
 
-app.get('/producto', (req, res ) =>{
+app.get('/producto', function (req, res ) {
     let desde = req.query.desde || 0;
     let hasta = req.query.hasta || 5;
      Producto.find({ estado: true })
@@ -78,12 +78,12 @@ app.post('/producto', function(req, res){
   app.delete('/producto/:id', (req, res) => {
     let id = req.params.id;
 
-    Producto.findByIdAndRemove(id, { context:'query'}, (err, catDB) => {
+    Producto.findByIdAndRemove(id, { context:'query'}, (err, proDB) => {
         if(err){
             return res.status(400).json({
                 ok:false,
                 msg: 'Ocurrio un error al momento de eliminar',
-                err
+                err:err
             });
         }
         res.json({
