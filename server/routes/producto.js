@@ -1,15 +1,14 @@
 const express = require('express');
 const _ = require ('underscore');
-const app = express();
 const Producto = require ('../models/producto');
+const app = express();
 
 app.get('/producto', function (req, res ) {
     let desde = req.query.desde || 0;
-    let hasta = req.query.hasta || 5;
+    let hasta = req.query.hasta || 100;
      Producto.find({ estado: true })
     .skip(Number(desde))
     .limit(Number(hasta))
-    .populate('usuario', 'nombre email')
     .exec((err, productos) => {
         if(err){
             return res.status(400).json({
@@ -23,17 +22,18 @@ app.get('/producto', function (req, res ) {
             ok:true,
             msg:'Productos listados con exito',
             conteo: productos.length,
-            productos:productos
+            productos
         });
     });
 });
 
 app.post('/producto', function(req, res){
+    let body = req.body;
     let pro = new Producto({
-        nombre: req.body.nombre,
-        precioUni: req.body.precioUni,
-        usuario: req.body.usuario,
-        categoria: req.body.categoria
+        nombre: body.nombre,
+        precioUni: body.precioUni,
+        usuario: body.usuario,
+        categoria: body.categoria
     }); 
 
     pro.save((err, proDB) => {

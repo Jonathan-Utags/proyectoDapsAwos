@@ -7,7 +7,7 @@ nombre:{
     type: String,
     require: [true,'El nombre es necesario']
 },
-pellido:{
+apellidos:{
     type: String,
     require: [true,'El apellido es necesario']
 },

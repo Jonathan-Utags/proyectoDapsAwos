@@ -6,7 +6,7 @@ const app = express();
 
   app.get('/usuario', function (req, res) {
     let desde = req.query.desde || 0;
-    let hasta = req.query.hasta || 5;
+    let hasta = req.query.hasta || 100;
     Usuario.find({ estado: true })
     .skip(Number(desde))
     .limit(Number(hasta))
@@ -32,6 +32,7 @@ const app = express();
     let body = req.body;
     let usr = new Usuario({
         nombre: body.nombre,
+        apellidos: body.apellidos,
         email: body.email,
         password: bcrypt.hashSync(body.password, 10)
     }); 
@@ -76,22 +77,6 @@ const app = express();
  });
   
   app.delete('/usuario/:id', function ( req, res){
-    // let id = req.params.id;
-
-    // Usuario.deleteOne({ _id: id}, (err, usuarioBorrado) => {
-    //     if(err) {
-    //         return res.status(400).json({
-    //             ok: false,
-    //             msg: 'Ocurrio un error al momento de eliminar',
-    //             err
-    //         });
-    //     }
-    //     res.json({
-    //         ok:true,
-    //         msg: 'Usuario eliminado con exito',
-    //         usuarioBorrado
-    //     });
-    // });
 
     let id = req.params.id;
     Usuario.findByIdAndUpdate(id, { estado: false }, 

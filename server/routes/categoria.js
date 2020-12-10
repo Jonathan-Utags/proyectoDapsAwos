@@ -1,15 +1,15 @@
 const express = require('express');
 const _ = require ('underscore');
-const app = express();
 const Categoria = require ('../models/categoria');
+const app = express();
 
 app.get('/categoria', function (req, res ) {
     let desde = req.query.desde || 0;
-    let hasta = req.query.hasta || 5;
+    let hasta = req.query.hasta || 100;
     Categoria.find({ estado: true })
     .skip(Number(desde))
     .limit(Number(hasta))
-    .populate('usuario', 'nombre email')
+    
     .exec((err, categorias) => {
         if(err){
             return res.status(400).json({
